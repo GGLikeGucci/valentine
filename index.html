@@ -157,7 +157,6 @@ button{
   const play = document.getElementById("playarea");
   const taunt = document.getElementById("taunt");
 
-  /* 🔥 YOUR CHEEKY TAUNTS */
   const taunts = [
     "Bold of you to try 😌",
     "Absolutely not 😒",
@@ -206,13 +205,14 @@ button{
     e.preventDefault();
     showTaunt();
 
-    yesScale = Math.min(yesScale*2,14);
-    noScale = Math.max(noScale*.7,.12);
+    // 🔥 SLOWER, CONTROLLED GROWTH
+    yesScale = Math.min(yesScale + 0.55, 6);
+    noScale = Math.max(noScale * 0.78, 0.14);
 
     yesBtn.style.transform = `translate(-50%,-50%) scale(${yesScale})`;
     noBtn.style.transform = `scale(${noScale})`;
 
-    if(yesScale > 2.5) yesBtn.classList.add("pulse");
+    if(yesScale >= 3.2) yesBtn.classList.add("pulse");
     requestAnimationFrame(placeNo);
   }
 
