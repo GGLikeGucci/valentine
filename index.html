@@ -9,10 +9,8 @@
       --bg1:#ffb3c6;
       --bg2:#ffe5ec;
       --yes:#ff4d6d;
-      --card:#ffffff;
       --text:#111;
     }
-
     *{ box-sizing:border-box; }
 
     body{
@@ -22,48 +20,53 @@
       overflow:hidden;
     }
 
-    /* FULL SCREEN STAGE */
     .stage{
-      height:100vh;
-      width:100vw;
+      height:100vh; width:100vw;
       display:flex;
       flex-direction:column;
       align-items:center;
       justify-content:flex-start;
-      padding: 28px 16px;
+      padding: 26px 16px 16px;
       text-align:center;
     }
 
-    /* BIG HEADER */
-    .dare{
+    /* TOP HEADER (as requested) */
+    .question{
       margin:0;
-      font-size: clamp(26px, 4.2vw, 54px);
+      font-size: clamp(26px, 4vw, 54px);
       font-weight: 900;
       color: var(--text);
-      letter-spacing: .5px;
-      text-shadow: 0 2px 0 rgba(255,255,255,.6);
+      letter-spacing: .4px;
+      text-shadow: 0 2px 0 rgba(255,255,255,.55);
     }
 
-    .question{
-      margin: 14px 0 0;
+    /* BIG SUB-HEADER */
+    .dare{
+      margin: 14px 0 6px;
       font-size: clamp(20px, 3vw, 40px);
-      font-weight: 800;
+      font-weight: 900;
       color: var(--text);
+      opacity: .95;
     }
 
-    /* The play area fills the rest of the screen */
+    .sub{
+      margin: 6px 0 0;
+      font-size: 14px;
+      opacity: .75;
+      font-weight: 700;
+    }
+
     .playarea{
       position:relative;
-      width: min(1100px, 100vw);
+      width: min(1200px, 100vw);
       flex: 1;
       margin-top: 18px;
       border-radius: 22px;
-      background: rgba(255,255,255,0.45);
-      box-shadow: 0 18px 45px rgba(0,0,0,.12);
+      background: rgba(255,255,255,0.22);
+      box-shadow: 0 18px 45px rgba(0,0,0,.10);
       overflow:hidden;
     }
 
-    /* Buttons */
     button{
       border:none;
       cursor:pointer;
@@ -71,7 +74,7 @@
       -webkit-tap-highlight-color: transparent;
       user-select:none;
       touch-action: manipulation;
-      transition: transform 0.25s ease;
+      transition: transform 0.22s ease, filter 0.22s ease;
       border-radius: 18px;
     }
 
@@ -90,66 +93,22 @@
     #no{
       position:absolute;
       left: 12%;
-      top: 70%;
+      top: 75%;
       padding: 12px 22px;
       font-size: 16px;
-      background: #efefef;
+      background: #f2f2f2;
       color:#111;
       box-shadow: 0 12px 22px rgba(0,0,0,.12);
       transform: scale(1);
-    }
-
-    /* Small footer tip (optional) */
-    .sub{
-      margin: 12px 0 0;
-      font-size: 14px;
-      opacity:.75;
-      font-weight: 700;
     }
   </style>
 </head>
 <body>
 
   <div class="stage">
-    <h1 class="dare">Tap “NO” if you dare 😈</h1>
-    <h2 class="question">Joya, will you be my Valentine? 💘</h2>
-    <div class="sub">(Try it on iPhone too — it runs away on tap)</div>
+    <h1 class="question">Joya, will you be my Valentine? 💘</h1>
+    <h2 class="dare">Tap “NO” if you dare 😈</h2>
+    <div class="sub">Try on iPhone too — it runs away on tap</div>
 
     <div class="playarea" id="playarea">
-      <button id="yes">YES 💖</button>
-      <button id="no">NO 🙄</button>
-    </div>
-  </div>
-
-  <script>
-    const noBtn = document.getElementById("no");
-    const yesBtn = document.getElementById("yes");
-    const play  = document.getElementById("playarea");
-
-    let yesScale = 1;
-    let noScale = 1;
-
-    function moveNoButton() {
-      const padding = 18;
-      const playRect = play.getBoundingClientRect();
-
-      // DRAMATIC: YES grows fast, NO shrinks
-      yesScale = Math.min(yesScale * 2, 14);
-      noScale  = Math.max(noScale * 0.7, 0.12);
-
-      // Keep YES centered even when scaling
-      yesBtn.style.transform = `translate(-50%, -50%) scale(${yesScale})`;
-      noBtn.style.transform  = `scale(${noScale})`;
-
-      // Calculate visible size of NO after scaling
-      const btnW = noBtn.offsetWidth * noScale;
-      const btnH = noBtn.offsetHeight * noScale;
-
-      const maxX = playRect.width  - btnW - padding;
-      const maxY = playRect.height - btnH - padding;
-
-      const x = Math.max(padding, Math.random() * maxX);
-      const y = Math.max(padding, Math.random() * maxY);
-
-      noBtn.style.left = x + "px";
-      noBtn.style.top  = y + "px";
+      <button id="yes">YE
